@@ -191,10 +191,10 @@ figcaption details.orig-cap p { margin: 6px 0 0; font-size: 0.78rem; font-style:
 /* ---------- Floating TOC (sidebar on wide screens) ---------- */
 .toc-float {
   position: fixed;
-  top: 130px;
+  top: calc(var(--report-header-height, 0px) + 16px);
   left: max(16px, calc((100vw - var(--max-w)) / 2 - 220px));
   width: 200px;
-  max-height: calc(100vh - 160px);
+  max-height: calc(100vh - var(--report-header-height, 0px) - 32px);
   overflow-y: auto;
   background: var(--surface);
   border: 1px solid var(--border);
@@ -208,7 +208,25 @@ figcaption details.orig-cap p { margin: 6px 0 0; font-size: 0.78rem; font-style:
 .toc-float a { text-decoration: none; color: var(--text-dim); }
 .toc-float a:hover { color: var(--accent); text-decoration: underline; }
 /* hide the floating TOC when the viewport is too narrow to fit it beside content */
-@media (max-width: 1340px) { .toc-float { display: none; } }
+@media (max-width: 1540px) {
+  .toc-float {
+    position: sticky;
+    top: calc(var(--report-header-height, 0px) + 10px);
+    left: auto;
+    width: auto;
+    max-width: var(--max-w);
+    max-height: none;
+    margin: 14px auto 0;
+    padding: 9px 16px;
+    border-left: 0;
+    border-right: 0;
+    border-radius: 0;
+  }
+  .toc-float strong { margin-bottom: 4px; }
+  .toc-float ol { display: flex; flex-wrap: wrap; gap: 2px 16px; padding-left: 18px; line-height: 1.65; }
+}
+
+@media (max-width: 760px) { .toc-float { display: none; } }
 
 /* ---------- Intuition / analogy box (先讲直觉) ---------- */
 .intuition {

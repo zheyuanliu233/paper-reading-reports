@@ -18,6 +18,9 @@
 
 
 
+
+
+
 <!-- GENERATED_COMPARISON_LINKS_START -->
 <nav class="related-comparisons" aria-label="相关对比报告"><span>相关对比</span><a href="../comparisons/alignment-stack-for-cross-embodiment-manipulation.html">跨本体操作的对齐栈：CalibAll、Qwen-RobotManip 与 Cloak</a></nav>
 <!-- GENERATED_COMPARISON_LINKS_END -->
@@ -82,4 +85,16 @@ cd Qwen-RobotManip
 # README: no released model weights or training pipeline</code></pre><div class="callout warn"><div class="label">常见坑</div><p>把 flange 当 TCP、混用 absolute/delta、忽略 rotation convention、对 padding 维计算 loss、用反 camera extrinsic，以及用 IID checkpoint 宣称跨本体泛化。</p></div></section>
 
 <section id="glossary"><h2>12. 术语表</h2><dl class="glossary"><dt>VLA</dt><dd>条件于图像、语言和状态直接预测动作的模型。</dd><dt>EEF / TCP</dt><dd>End-Effector / Tool Center Point；TCP 是与实际抓取点一致的标准工具坐标。</dd><dt>CaPE</dt><dd>把相机位姿编码进 attention 的 Camera Positional Encoding。</dd><dt>Flow matching</dt><dd>学习 noise 到 action 的速度场，数值积分生成动作。</dd><dt>OOD</dt><dd>测试条件在背景、物体、指令、任务或本体上偏离训练分布。</dd><dt>In-context adaptation</dt><dd>不更新参数，利用 episode 历史调整当前 policy。</dd></dl></section>
-</main></body></html>
+</main>
+<script data-report-header-offset>
+(() => {
+  const header = document.querySelector('.meta-bar');
+  if (!header || typeof ResizeObserver === 'undefined') return;
+  const update = () => {
+    document.documentElement.style.setProperty('--report-header-height', `${header.offsetHeight}px`);
+  };
+  new ResizeObserver(update).observe(header);
+  update();
+})();
+</script>
+</body></html>
