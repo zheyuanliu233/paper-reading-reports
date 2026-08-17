@@ -1,0 +1,1 @@
+Figure 15: Case study on arrange paper cups (ARX5). QWEN-ROBOTMANIP (top) sequentially picks,stacks, and collects all paper cups with precise placement. π0.5_generalist (bottom) encounters a stuckcup during stacking and fails to recover.

@@ -1,0 +1,128 @@
+[
+  {
+    "page": 1,
+    "fig": 1,
+    "status": "ok",
+    "file": "fig1_p1.png",
+    "caption_file": "fig1_p1.txt",
+    "rect": [
+      103.0,
+      444.7,
+      509.0,
+      589.1
+    ],
+    "caption": "Figure 1: We cloak the end-effector from its own wrist camera, letting a VLA trained on a singleparallel-jaw gripper transfer zero-shot to unseen embodiments, including a five-fingered hand."
+  },
+  {
+    "page": 4,
+    "fig": 2,
+    "status": "ok",
+    "file": "fig2_p4.png",
+    "caption_file": "fig2_p4.txt",
+    "rect": [
+      103.0,
+      67.0,
+      509.0,
+      217.4
+    ],
+    "caption": "Figure 2: Overview. Cloak renders a geometric mask of the end-effector using the robot state andwrist camera parameters, augments it during training, and uses it to compute an attention mask forthe vision encoder, cloaking the end-effector from the wrist view. The resulting image patch tokens,the source-robot state, and the language prompt drive a single VLA backbone and action head. Onan unseen embodiment, tip-pose retargeting bridges the robots via FK and IK; trg2src maps thetarget state to the source state input to the policy; src2trg maps action outputs back to the target."
+  },
+  {
+    "page": 7,
+    "fig": 3,
+    "status": "ok",
+    "file": "fig3_p7.png",
+    "caption_file": "fig3_p7.txt",
+    "rect": [
+      103.0,
+      67.0,
+      509.0,
+      195.4
+    ],
+    "caption": "Figure 3: Task-averaged progression rate. The original gripper does not use TP retargeting becausethere is no embodiment transfer. All methods tie on the source gripper. On the unseen YAM arm,UMI gripper, and Sharpa hand, only Cloak holds up while every baseline falls behind, most notablyon the hand."
+  },
+  {
+    "page": 14,
+    "fig": 4,
+    "status": "ok",
+    "file": "fig4_p14.png",
+    "caption_file": "fig4_p14.txt",
+    "rect": [
+      103.0,
+      67.0,
+      509.0,
+      136.0
+    ],
+    "caption": "Figure 4: Wrist camera extrinsics estimation on a representative DROID frame. From left to right:the raw wrist RGB frame, the simulated gripper mask rendered at the initial extrinsic T 0"
+  },
+  {
+    "page": 18,
+    "fig": 5,
+    "status": "ok",
+    "file": "fig5_p18.png",
+    "caption_file": "fig5_p18.txt",
+    "rect": [
+      103.0,
+      80.9,
+      509.0,
+      207.1
+    ],
+    "caption": "Figure 5: Example trial setups across the four tasks (two per task). The bright yellow numberoverlaid on each image is the trial index, matching the corresponding row in Table 4."
+  },
+  {
+    "page": 19,
+    "fig": 6,
+    "status": "ok",
+    "file": "fig6_p19.png",
+    "caption_file": "fig6_p19.txt",
+    "rect": [
+      103.0,
+      196.1,
+      509.0,
+      540.3
+    ],
+    "caption": "Figure 6: Keyframe rollouts on the unseen Sharpa hand for the pick-and-place task, prompt “Placethe block in the bowl”. π0.5-droid + retargeting never hides the body, so its wrist view stays out ofdistribution and it grasps inaccurately and aims off target. LAP-VLA aligns the embodiments at thelanguage layer, giving a cleaner action interface, but cannot close the vision gap: it fails to grasp andarrives at the bowl empty-handed. Cloak-VLA grasps and places cleanly."
+  },
+  {
+    "page": 20,
+    "fig": 7,
+    "status": "ok",
+    "file": "fig7_p20.png",
+    "caption_file": "fig7_p20.txt",
+    "rect": [
+      103.0,
+      201.6,
+      509.0,
+      545.8
+    ],
+    "caption": "Figure 7: Keyframe rollouts on the unseen UMI gripper for the fold task, prompt “Fold the towel”.π0.5-droid + retargeting grasps and lifts the towel, but with the body still in the wrist view its actionsdrift out of distribution and the fold collapses. LAP-VLA keeps a clean action interface, yet thevision gap throws off its aim and it never lines up to grasp. Cloak-VLA folds the towel cleanly."
+  },
+  {
+    "page": 21,
+    "fig": 8,
+    "status": "ok",
+    "file": "fig8_p21.png",
+    "caption_file": "fig8_p21.txt",
+    "rect": [
+      103.0,
+      190.7,
+      509.0,
+      535.0
+    ],
+    "caption": "Figure 8: Keyframe rollouts on the unseen YAM arm and gripper for the remove task, prompt“Remove the marker from the bowl”. Unlike the UMI and Sharpa embodiments, which keep thesource Franka arm and change only the end-effector, the YAM is a different arm and gripper. π0.5-droid + retargeting grasps the marker and the bowl together and drifts out of distribution; LAP-VLAgrasps at empty air. Cloak-VLA removes the marker cleanly, showing that cloaking the wrist viewis enough to cross arms, not just end-effectors."
+  },
+  {
+    "page": 22,
+    "fig": 9,
+    "status": "ok",
+    "file": "fig9_p22.png",
+    "caption_file": "fig9_p22.txt",
+    "rect": [
+      103.0,
+      174.1,
+      509.0,
+      518.7
+    ],
+    "caption": "Figure 9: Ablation rollouts on the unseen Sharpa hand for the move task, prompt “Move the cubenext to the white mug”. We compare Cloak-VLA against two ablations that share its architecturebut change the training mask: Cloak-VLA-NoAug, trained on the bare source-embodiment maskwith no augmentation, and Cloak-VLA-Overlap, a Shadow-inspired [26] variant that overlays thesource mask with a known target silhouette. Both ablations either omit augmentation or assumethe target embodiment is known in advance, isolating mask augmentation as the component thatcloses the embodiment gap. Only Cloak-VLA grasps the cube and completes the move, while bothablations fail to secure it, highlighting that mask augmentation is necessary for a robust wrist-viewrepresentation on an unseen embodiment."
+  }
+]

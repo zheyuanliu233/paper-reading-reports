@@ -16,7 +16,7 @@
 
 <header class="hero">
   <h1>论文阅读报告库</h1>
-  <p>中文精读、方法对比与复现指南 · 共 0 篇</p>
+  <p>中文精读、方法对比与复现指南 · 共 3 篇</p>
 </header>
 
 <main class="index-wrap">
@@ -29,17 +29,50 @@
     <div class="result-count" id="result-count" aria-live="polite"></div>
   </section>
 
-  <section id="comparison-section" hidden>
+  <section id="comparison-section">
     <h2 class="section-title">对比解读</h2>
     <div class="card-grid comparison-grid">
-
+      <a class="card" href="comparisons/alignment-stack-for-cross-embodiment-manipulation.html">
+        <div class="tag-list"><span class="tag cmp">对比</span></div>
+        <h3>跨本体操作的对齐栈：CalibAll、Qwen-RobotManip 与 Cloak</h3>
+        <p>从数据标签、动作几何到视觉观察，三篇工作分别消除跨本体 VLA 中不同层级的不一致。</p>
+      </a>
     </div>
   </section>
 
   <section>
     <h2 class="section-title">单篇解读</h2>
     <div class="card-grid" id="paper-grid">
-
+      <a class="card paper-card" href="reports/cloak-zero-shot-cross-embodiment.html"
+         data-title="Cloak: Zero-Shot Cross-Embodiment Manipulation by Masking the End-Effector from the VLA"
+         data-summary="训练时用几何 mask 与形状增强遮掉腕部相机中的末端执行器，再以双指尖 FK/IK retargeting 实现真正未见本体的零样本迁移。"
+         data-venue="arXiv 2026"
+         data-tags="world model|data process|vision-language-action|cross-embodiment|masked-attention|robotics">
+        <div class="tag-list"><span class="tag">world model</span><span class="tag">data process</span><span class="tag">vision-language-action</span><span class="tag">cross-embodiment</span><span class="tag">masked-attention</span><span class="tag">robotics</span></div>
+        <h3>Cloak: Zero-Shot Cross-Embodiment Manipulation by Masking the End-Effector from the VLA</h3>
+        <p>训练时用几何 mask 与形状增强遮掉腕部相机中的末端执行器，再以双指尖 FK/IK retargeting 实现真正未见本体的零样本迁移。</p>
+        <div class="venue">arXiv 2026</div>
+      </a>
+      <a class="card paper-card" href="reports/qwen-robotmanip.html"
+         data-title="Qwen-RobotManip Technical Report: Alignment Unlocks Scale for Robotic Manipulation Foundation Models"
+         data-summary="先把异构机器人数据在表示、运动与行为三层对齐，再用 3.81 万小时数据验证 VLA 的规模化与 OOD 泛化。"
+         data-venue="arXiv 2026"
+         data-tags="world model|data process|vision-language-action|cross-embodiment|robotics|arxiv-2026">
+        <div class="tag-list"><span class="tag">world model</span><span class="tag">data process</span><span class="tag">vision-language-action</span><span class="tag">cross-embodiment</span><span class="tag">robotics</span><span class="tag">arxiv-2026</span></div>
+        <h3>Qwen-RobotManip Technical Report: Alignment Unlocks Scale for Robotic Manipulation Foundation Models</h3>
+        <p>先把异构机器人数据在表示、运动与行为三层对齐，再用 3.81 万小时数据验证 VLA 的规模化与 OOD 泛化。</p>
+        <div class="venue">arXiv 2026</div>
+      </a>
+      <a class="card paper-card" href="reports/unify-robot-actions-camera-frame.html"
+         data-title="Unify Robot Actions in Camera Frame"
+         data-summary="CalibAll 用 temporal PnP 加可微渲染，为离线机器人数据补齐外参并生成语义一致的 camera-frame TCP action。"
+         data-venue="arXiv 2025 (v2 2026)"
+         data-tags="world model|data process|camera-frame-action|calibration|cross-embodiment|robotics">
+        <div class="tag-list"><span class="tag">world model</span><span class="tag">data process</span><span class="tag">camera-frame-action</span><span class="tag">calibration</span><span class="tag">cross-embodiment</span><span class="tag">robotics</span></div>
+        <h3>Unify Robot Actions in Camera Frame</h3>
+        <p>CalibAll 用 temporal PnP 加可微渲染，为离线机器人数据补齐外参并生成语义一致的 camera-frame TCP action。</p>
+        <div class="venue">arXiv 2025 (v2 2026)</div>
+      </a>
     </div>
     <p class="empty-results" id="empty-results" hidden>没有匹配的报告。</p>
   </section>

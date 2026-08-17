@@ -1,0 +1,1 @@
+Figure 6 Qualitative results on DROID [19]. Rendering result using camera extrinsics in DROID [19] obtained viatraditional marker-based calibration during data collection and those estimated training-free and offline by CalibAll(ours).

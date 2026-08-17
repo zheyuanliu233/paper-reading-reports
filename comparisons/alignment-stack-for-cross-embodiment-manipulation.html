@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="page-title" content="跨本体操作的对齐栈：CalibAll、Qwen-RobotManip 与 Cloak">
+<meta name="page-summary" content="从数据标签、动作几何到视觉观察，三篇工作分别消除跨本体 VLA 中不同层级的不一致。">
+<title>跨本体操作的对齐栈 - 对比解读</title><link rel="stylesheet" href="../assets/style.css">
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script><script>mermaid.initialize({startOnLoad:true,theme:'neutral'});</script>
+</head><body>
+<header class="meta-bar"><h1>跨本体操作的对齐栈：CalibAll、Qwen-RobotManip 与 Cloak</h1><div class="authors">数据标签对齐 · 模型与动作对齐 · 视觉去本体化</div><nav class="meta-links"><a href="../index.html">返回索引</a><a href="../reports/unify-robot-actions-camera-frame.html">CalibAll</a><a href="../reports/qwen-robotmanip.html">Qwen-RobotManip</a><a href="../reports/cloak-zero-shot-cross-embodiment.html">Cloak</a></nav></header>
+<main class="wrap">
+<section><h2>1. 它们是什么关系</h2><p>三篇论文共同回答一个问题：为什么把更多机器人数据放进同一个 VLA，仍不自然地产生跨本体能力？答案不是一个单独模块，而是不同层级的不一致会依次卡住 transfer。</p><p><strong>CalibAll</strong> 位于数据入口：旧数据没有外参、EEF/TCP 定义不同，先把 action label 变成 camera-frame TCP。<strong>Qwen-RobotManip</strong> 位于 foundation model：用 canonical slots、camera-frame delta、history context、data curation 与 VL co-training 把对齐后的多源信号转成 scaling。<strong>Cloak</strong> 位于 observation 与 deployment：即使动作能 retarget，wrist view 里新夹爪/新手的外观仍 OOD，于是把这块视觉 shortcut 从 attention 删除。</p><div class="callout warn"><div class="label">不要误读成单一系统</div><p>它们方法上互补，但不是已经公开集成的端到端 stack。Cloak 的实验 policy 保留 source joint space，通过 tip FK/IK 转 target，并未直接使用 CalibAll/Qwen 的 camera-frame action。</p></div></section>
+
+<section><h2>2. 演进与因果链</h2><div class="mermaid">flowchart TB
+A[异构离线数据] --> B{label 是否同义?}
+B -->|否| C[CalibAll: 外参 + TCP + camera frame]
+C --> D{模型能否吸收规模?}
+D -->|仍需结构/行为对齐| E[Qwen-RobotManip: 80D mask + CaPE + context]
+E --> F{新本体观察是否 OOD?}
+F -->|wrist 外观改变| G[Cloak: geometry attention mask + augmentation]
+G --> H[tip FK/IK deployment]
+H --> I[跨本体闭环操作]</div>
+<p>其中 CalibAll 与 Qwen 最直接的共同点是 camera frame：前者解决“如何给旧数据补出这种 label”，后者解决“如何在 VLA action expert 中消费它并与视觉几何对齐”。Cloak 则指出，仅统一动作还不足够，观察本身也可能泄露本体身份。</p></section>
+
+<section><h2>3. 逐项对比</h2><div class="table-scroll"><table class="cmp-table"><thead><tr><th>维度</th><th>CalibAll</th><th>Qwen-RobotManip</th><th>Cloak</th></tr></thead><tbody>
+<tr><td>首要 gap</td><td>旧数据缺外参，action 坐标和 TCP 语义不一致</td><td>异构 representation/motion/behavior 阻止 scaling</td><td>新本体在 wrist image 中造成 visual OOD</td></tr>
+<tr><td>作用层</td><td>离线 data annotation / preprocessing</td><td>数据、表示、VLA architecture、training 与 evaluation</td><td>vision attention、mask augmentation、deployment retargeting</td></tr>
+<tr><td>核心输入</td><td>RGB video、joint angles、URDF</td><td>多源 robot/human data、camera params、VL data</td><td>URDF mesh、joint state、wrist camera params、source policy</td></tr>
+<tr><td>动作统一</td><td>14D camera-frame TCP pose + gripper</td><td>80D canonical vector；camera-frame delta EEF</td><td>source joint space 不变；two-tip FK/IK 映射</td></tr>
+<tr><td>视觉处理</td><td>VFM/track/mask 用于校准，也输出 auxiliary masks</td><td>Qwen-VL、CaPE、multi-view、VL co-training</td><td>几何 mask 让 ViT 无法读取 EEF patch</td></tr>
+<tr><td>数据规模</td><td>16 datasets、4 platforms；正文约 97K，另报 527K frame samples</td><td>约 38,100h manipulation + 28M VL points</td><td>DROID 单一本体约 350h，过滤后约 70K train episodes</td></tr>
+<tr><td>关键结果</td><td>DREAM ADD 0.008m；ALOHA OOD SR 72.5</td><td>RoboTwin-XE EEF 23.9；RoboTwin-IF 72.2</td><td>Sharpa progression 81.8 vs 无 mask 54.4</td></tr>
+<tr><td>算力披露</td><td>policy pretrain 32 A100；SFT 8 A100</td><td>预训练总算力未披露</td><td>100K steps，8 H100，48h</td></tr>
+<tr><td>代码/权重</td><td>MIT 代码、Docker、demo 可用</td><td>信息仓库；无代码/权重，且称暂无权重发布计划</td><td>预处理资产已开；训练代码/权重标为 coming soon</td></tr>
+<tr><td>最强优点</td><td>把 action semantics 做成可执行的数据管线</td><td>系统证明 alignment 是 scaling 前提</td><td>用强控制变量定位 visual embodiment gap</td></tr>
+<tr><td>主要局限</td><td>tracking/mask 仍需人工，固定相机假设</td><td>不可完整复现，OOD 仍偏仿真</td><td>仅两指尖技能、3 个 target、本体 camera mount 有约束</td></tr>
+</tbody></table></div></section>
+
+<section><h2>4. 三种“统一”不是同一个词</h2><h3>4.1 Shape alignment</h3><p>Padding 到 14D 或 80D 只让 tensor 能拼 batch。它不保证 slot 同义，也不保证 inactive dimension 不产生梯度。Qwen 的 binary mask 比简单 padding 多解决了一层监督问题。</p><h3>4.2 Geometric alignment</h3><p>CalibAll 的 $T^c_{tcp}$ 与 Qwen 的 camera-frame delta EEF 都在追求“画面里相同的运动，label 也接近”。前者更像数据编译器，后者还用 CaPE 把 camera geometry 注入 action attention。</p><h3>4.3 Invariance by deletion</h3><p>Cloak 不把不同末端外观映射到共同 latent，而是删除整块输入。这个设计在 end-effector pixels 对任务贡献小、对本体识别贡献大时特别有效；若接触判断必须看手指本身，删除会损失必要信息。</p></section>
+
+<section><h2>5. 组合成工程路线时怎么选</h2><div class="table-scroll"><table><thead><tr><th>你的场景</th><th>优先借鉴</th><th>理由</th></tr></thead><tbody><tr><td>手上有多个旧数据集，但坐标定义混乱</td><td>CalibAll</td><td>先修外参、TCP 与 local axes，防止 raw mix negative transfer</td></tr><tr><td>正在训练多本体 foundation policy</td><td>Qwen-RobotManip</td><td>canonical schema、mask、camera motion、清洗和 OOD protocol 是完整 recipe</td></tr><tr><td>source 数据丰富，但要换新 gripper/hand</td><td>Cloak</td><td>无需 target demo，直接处理 wrist visual gap</td></tr><tr><td>目标任务依赖 finger contact/in-hand rotation</td><td>三者都不够</td><td>需要 richer contact representation、触觉/力反馈和 dexterous data</td></tr><tr><td>希望做 world model</td><td>CalibAll + Qwen 的数据层</td><td>统一 TCP trajectory、mask、camera geometry 与 temporal context 可改善 dynamics learning；三篇本身都不是显式 world model</td></tr></tbody></table></div></section>
+
+<section><h2>6. 一个可检验的联合假设</h2><p>三篇工作合起来提出一个值得实验的假设：跨本体误差可拆成 label inconsistency、policy representation conflict、visual embodiment shortcut 与 controller/physics residual。可以做 $2\times2\times2$ 消融：raw vs camera-frame labels、unified vs per-embodiment policy、visible vs cloaked wrist EEF；再在相同 target robots 上比较。</p><div class="verdict"><strong>预期但尚未被三篇共同验证：</strong>CalibAll/Qwen 类 camera action 与 Cloak 的 visual masking 可能互补，但 Cloak 删除 EEF pixels 后，camera-frame action 所需的精细 hand-eye relation 是否仍足够，必须用联合实验回答，不能从现有结果直接推出。</div></section>
+
+<section><h2>7. 最终判断</h2><p>如果只记住一句话：<strong>跨本体 scaling 不是“把机器人名字写进 prompt”，而是把数据标签、动作几何、视觉观察与部署控制逐层去歧义。</strong></p><p>CalibAll 最可立即复用；Qwen-RobotManip 给出最完整但最难复现的系统证据；Cloak 的 insight 最小巧，控制变量也最漂亮，但适用边界最明确。三者共同把 data process 从后台清洗工作推到了机器人 foundation model 的核心方法位置。</p></section>
+</main></body></html>

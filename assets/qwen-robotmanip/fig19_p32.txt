@@ -1,0 +1,1 @@
+Figure 19: Downstream performance on RoboTwin-C2R after fine-tuning models pre-trained withvaried data percentages and action representations. Each subplot reports success rate under a differentcontrol mode (joint or EEF) and evaluation setting (Easy or Hard).

@@ -1,0 +1,1 @@
+Figure 21: Performance comparison under differ-ent proportions of training data in RoboTwin-IF.We report the score at 10k, 30k, 50k, 70k, and 90ktraining steps. Compared with the baseline pi05,our method benefits from incorporating VLM dataand further improves when co-training with bothVLM data and VLA pretraining data.

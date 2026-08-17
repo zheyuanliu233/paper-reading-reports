@@ -1,0 +1,1 @@
+Figure 11: In-domain and out-of-domain tasks of real-world CobotMagic ALOHA platform.

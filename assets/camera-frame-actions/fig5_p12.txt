@@ -1,0 +1,1 @@
+Figure 5 Qualitative result of coarse initialization and extrinsic refinement on Franka, xArm and UR5e. The first rowpresents the source RGB images. The second row shows the rendered result using the camera extrinsic obtained from theautomatic coarse initialization approach. The last row shows the rendered result of final camera extrinsic produced byCalibAll.

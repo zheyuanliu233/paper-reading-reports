@@ -1,0 +1,1 @@
+Figure 5: Evaluation settings for QWEN-ROBOTMANIP, spanning 500+ simulation tasks across LIBERO,LIBERO-Plus, EBench, RoboTwin, RoboTwin-IF, RoboTwin-XE, and RoboCasa365, and 80+ real-worldtasks across 4 embodiments including UR, Franka, AgileX (ALOHA), and ARX.

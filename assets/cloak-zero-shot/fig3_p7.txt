@@ -1,0 +1,1 @@
+Figure 3: Task-averaged progression rate. The original gripper does not use TP retargeting becausethere is no embodiment transfer. All methods tie on the source gripper. On the unseen YAM arm,UMI gripper, and Sharpa hand, only Cloak holds up while every baseline falls behind, most notablyon the hand.

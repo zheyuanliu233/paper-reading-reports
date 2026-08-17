@@ -1,0 +1,1 @@
+Figure 4: Wrist camera extrinsics estimation on a representative DROID frame. From left to right:the raw wrist RGB frame, the simulated gripper mask rendered at the initial extrinsic T 0
