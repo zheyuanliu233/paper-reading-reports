@@ -37,7 +37,8 @@ body {
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--border);
   box-shadow: 0 1px 3px rgba(16,24,40,0.04);
-  padding: 14px 24px;
+  min-height: 58px;
+  padding: 14px 190px 14px 24px;
 }
 .meta-bar h1 {
   margin: 0 0 4px;
@@ -45,6 +46,34 @@ body {
   line-height: 1.4;
 }
 .meta-bar .authors { color: var(--text-dim); font-size: 0.85rem; margin-bottom: 10px; }
+.meta-collapse-toggle {
+  position: absolute;
+  top: 14px;
+  right: 24px;
+  min-height: 34px;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--bg);
+  color: var(--text-dim);
+  padding: 5px 10px;
+  font: inherit;
+  font-size: .76rem;
+  cursor: pointer;
+}
+.meta-collapse-toggle:hover { border-color: var(--accent); color: var(--accent); }
+.meta-collapse-toggle::before { content: "⌃"; font-size: .9rem; line-height: 1; }
+.meta-bar.is-collapsed { padding-top: 12px; padding-bottom: 12px; }
+.meta-bar.is-collapsed > :not(h1):not(.meta-collapse-toggle) { display: none; }
+.meta-bar.is-collapsed h1 {
+  margin: 4px 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.meta-bar.is-collapsed .meta-collapse-toggle::before { content: "⌄"; }
 .report-tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0 10px; }
 .report-tag {
   display: inline-flex;
@@ -227,6 +256,11 @@ figcaption details.orig-cap p { margin: 6px 0 0; font-size: 0.78rem; font-style:
 }
 
 @media (max-width: 760px) { .toc-float { display: none; } }
+
+@media (max-width: 640px) {
+  .meta-bar { padding-right: 142px; padding-left: 16px; }
+  .meta-collapse-toggle { right: 12px; }
+}
 
 /* ---------- Intuition / analogy box (先讲直觉) ---------- */
 .intuition {
