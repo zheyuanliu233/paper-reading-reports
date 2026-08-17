@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="zh-CN"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="paper-tags" content="world model, data process, camera-frame-action, calibration, cross-embodiment, robotics">
+<meta name="paper-topics" content="world model">
+<meta name="paper-tags" content="data process, camera-frame-action, calibration, cross-embodiment, robotics">
 <meta name="paper-slug" content="unify-robot-actions-camera-frame">
 <meta name="paper-title" content="Unify Robot Actions in Camera Frame">
 <meta name="paper-summary" content="CalibAll 用 temporal PnP 加可微渲染，为离线机器人数据补齐外参并生成语义一致的 camera-frame TCP action。">
@@ -10,7 +11,14 @@
 <script>MathJax={tex:{inlineMath:[['$','$']],displayMath:[['$$','$$']]}};</script><script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script><script>mermaid.initialize({startOnLoad:true,theme:'neutral'});</script>
 </head><body>
-<header class="meta-bar"><h1>Unify Robot Actions in Camera Frame</h1><div class="authors">Sicheng Xie 等 · 复旦大学 / 上海创智学院 / Qwen Team · arXiv:2511.17001v2</div><div class="report-tags" id="report-tags"></div><nav class="meta-links"><a href="../index.html">返回索引</a><a href="https://arxiv.org/abs/2511.17001v2" target="_blank">arXiv</a><a href="https://arxiv.org/pdf/2511.17001v2" target="_blank">PDF</a><a href="https://github.com/SII-dannyXSC/CalibAll" target="_blank">Code (MIT)</a><a href="https://huggingface.co/datasets/dannyXSC/Caliball_demo" target="_blank">Demo data</a></nav></header>
+<header class="meta-bar"><h1>Unify Robot Actions in Camera Frame</h1><div class="authors">Sicheng Xie 等 · 复旦大学 / 上海创智学院 / Qwen Team · arXiv:2511.17001v2</div><div class="report-tags" id="report-tags"></div><nav class="meta-links"><a href="../index.html">返回索引</a><a href="https://arxiv.org/abs/2511.17001v2" target="_blank">arXiv</a><a href="https://arxiv.org/pdf/2511.17001v2" target="_blank">PDF</a><a href="https://github.com/SII-dannyXSC/CalibAll" target="_blank">Code (MIT)</a><a href="https://huggingface.co/datasets/dannyXSC/Caliball_demo" target="_blank">Demo data</a></nav>
+
+
+
+<!-- GENERATED_COMPARISON_LINKS_START -->
+<nav class="related-comparisons" aria-label="相关对比报告"><span>相关对比</span><a href="../comparisons/alignment-stack-for-cross-embodiment-manipulation.html">跨本体操作的对齐栈：CalibAll、Qwen-RobotManip 与 Cloak</a></nav>
+<!-- GENERATED_COMPARISON_LINKS_END -->
+</header>
 <script>(()=>{const m=document.querySelector('meta[name="paper-tags"]'),t=document.getElementById('report-tags');m.content.split(',').map(x=>x.trim()).forEach(x=>{const s=document.createElement('span');s.className='report-tag';s.textContent=x;t.appendChild(s)});})();</script>
 <nav class="toc-float"><strong>目录</strong><ol><li><a href="#speedread">5 分钟速读</a></li><li><a href="#tldr">TL;DR</a></li><li><a href="#intro">问题</a></li><li><a href="#lineage">脉络</a></li><li><a href="#bigpicture">总览</a></li><li><a href="#notation">符号</a></li><li><a href="#method">方法</a></li><li><a href="#walkthrough">例子</a></li><li><a href="#exp">实验</a></li><li><a href="#viz">可视化</a></li><li><a href="#limits">局限</a></li><li><a href="#faq">FAQ</a></li><li><a href="#repro">复现</a></li><li><a href="#glossary">术语</a></li></ol></nav>
 <main class="wrap">

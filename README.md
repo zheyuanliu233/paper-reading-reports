@@ -18,10 +18,13 @@
 <meta name="paper-title" content="论文标题">
 <meta name="paper-summary" content="一句话中文摘要">
 <meta name="paper-venue" content="CVPR 2025">
-<meta name="paper-tags" content="diffusion, image-generation, cvpr-2025">
+<meta name="paper-topics" content="world model, video">
+<meta name="paper-tags" content="data process, theory, distill">
 ```
 
-标签可以用英文或中文，以逗号分隔。修改报告或标签后推送到 `main`，GitHub Actions 会自动重建索引并部署 GitHub Pages。
+`paper-topics` 是第一级主题文件夹，一篇论文可以属于多个主题；`paper-tags` 是第二级方法标签，用于主题内筛选。两者都支持中文或英文，以逗号分隔。
+
+前端的“编辑分类”可以把修改保存到当前浏览器，也可直接打开对应 GitHub 文件永久修改。永久修改后推送到 `main`，GitHub Actions 会自动重建索引、更新关联对比入口并部署 GitHub Pages。
 
 ## 本地重建
 
