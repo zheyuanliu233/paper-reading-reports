@@ -7,11 +7,13 @@
 <meta name="paper-title" content="Unify Robot Actions in Camera Frame">
 <meta name="paper-summary" content="CalibAll 用 temporal PnP 加可微渲染，为离线机器人数据补齐外参并生成语义一致的 camera-frame TCP action。">
 <meta name="paper-venue" content="arXiv 2025 (v2 2026)">
-<title>Unify Robot Actions in Camera Frame - 深度解读</title><link rel="stylesheet" href="../assets/style.css?v=report-layout-2">
+<title>Unify Robot Actions in Camera Frame - 深度解读</title><link rel="stylesheet" href="../assets/style.css?v=report-layout-3">
 <script>MathJax={tex:{inlineMath:[['$','$']],displayMath:[['$$','$$']]}};</script><script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script><script>mermaid.initialize({startOnLoad:true,theme:'neutral'});</script>
 </head><body>
 <header class="meta-bar"><h1>Unify Robot Actions in Camera Frame</h1><div class="authors">Sicheng Xie 等 · 复旦大学 / 上海创智学院 / Qwen Team · arXiv:2511.17001v2</div><div class="report-tags" id="report-tags"></div><nav class="meta-links"><a href="../index.html">返回索引</a><a href="https://arxiv.org/abs/2511.17001v2" target="_blank">arXiv</a><a href="https://arxiv.org/pdf/2511.17001v2" target="_blank">PDF</a><a href="https://github.com/SII-dannyXSC/CalibAll" target="_blank">Code (MIT)</a><a href="https://huggingface.co/datasets/dannyXSC/Caliball_demo" target="_blank">Demo data</a></nav>
+
+
 
 
 
@@ -88,6 +90,36 @@ python scripts/label.py \
   };
   new ResizeObserver(update).observe(header);
   update();
+})();
+</script>
+
+<script data-report-header-collapse>
+(() => {
+  const header = document.querySelector('.meta-bar');
+  if (!header) return;
+  const storageKey = 'paper-reading-source-info-collapsed';
+  let button = header.querySelector('.meta-collapse-toggle');
+  if (!button) {
+    button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'meta-collapse-toggle';
+    header.prepend(button);
+  }
+  const apply = collapsed => {
+    header.classList.toggle('is-collapsed', collapsed);
+    button.setAttribute('aria-expanded', String(!collapsed));
+    button.setAttribute('aria-label', collapsed ? '展开源信息' : '收起源信息');
+    button.title = collapsed ? '展开源信息' : '收起源信息';
+    button.textContent = collapsed ? '展开源信息' : '收起源信息';
+  };
+  let collapsed = false;
+  try { collapsed = localStorage.getItem(storageKey) === 'true'; } catch (_) {}
+  apply(collapsed);
+  button.addEventListener('click', () => {
+    collapsed = !header.classList.contains('is-collapsed');
+    apply(collapsed);
+    try { localStorage.setItem(storageKey, String(collapsed)); } catch (_) {}
+  });
 })();
 </script>
 </body></html>

@@ -18,7 +18,8 @@ GENERATED_COMPARISON_RE = re.compile(
     re.DOTALL,
 )
 HEADER_OFFSET_SCRIPT_MARKER = "data-report-header-offset"
-REPORT_STYLE_HREF = '../assets/style.css?v=report-layout-2'
+HEADER_COLLAPSE_SCRIPT_MARKER = "data-report-header-collapse"
+REPORT_STYLE_HREF = '../assets/style.css?v=report-layout-3'
 
 
 class MetadataParser(HTMLParser):
@@ -222,6 +223,41 @@ def inject_comparison_links(reports: list[Report], comparisons: list[Comparison]
   };
   new ResizeObserver(update).observe(header);
   update();
+})();
+</script>
+'''
+            body_end = text.lower().rfind("</body>")
+            insert_at = body_end if body_end >= 0 else len(text)
+            text = text[:insert_at] + script + text[insert_at:]
+        if HEADER_COLLAPSE_SCRIPT_MARKER not in text:
+            script = '''
+<script data-report-header-collapse>
+(() => {
+  const header = document.querySelector('.meta-bar');
+  if (!header) return;
+  const storageKey = 'paper-reading-source-info-collapsed';
+  let button = header.querySelector('.meta-collapse-toggle');
+  if (!button) {
+    button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'meta-collapse-toggle';
+    header.prepend(button);
+  }
+  const apply = collapsed => {
+    header.classList.toggle('is-collapsed', collapsed);
+    button.setAttribute('aria-expanded', String(!collapsed));
+    button.setAttribute('aria-label', collapsed ? '展开源信息' : '收起源信息');
+    button.title = collapsed ? '展开源信息' : '收起源信息';
+    button.textContent = collapsed ? '展开源信息' : '收起源信息';
+  };
+  let collapsed = false;
+  try { collapsed = localStorage.getItem(storageKey) === 'true'; } catch (_) {}
+  apply(collapsed);
+  button.addEventListener('click', () => {
+    collapsed = !header.classList.contains('is-collapsed');
+    apply(collapsed);
+    try { localStorage.setItem(storageKey, String(collapsed)); } catch (_) {}
+  });
 })();
 </script>
 '''
