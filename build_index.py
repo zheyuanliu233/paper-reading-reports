@@ -18,6 +18,7 @@ GENERATED_COMPARISON_RE = re.compile(
     re.DOTALL,
 )
 HEADER_OFFSET_SCRIPT_MARKER = "data-report-header-offset"
+REPORT_STYLE_HREF = '../assets/style.css?v=report-layout-2'
 
 
 class MetadataParser(HTMLParser):
@@ -186,6 +187,11 @@ def comparison_links_for(report: Report, comparisons: list[Comparison]) -> list[
 def inject_comparison_links(reports: list[Report], comparisons: list[Comparison]) -> None:
     for report in reports:
         text = report.path.read_text(encoding="utf-8", errors="ignore")
+        text = re.sub(
+            r'href=["\']\.\./assets/style\.css(?:\?[^"\']*)?["\']',
+            f'href="{REPORT_STYLE_HREF}"',
+            text,
+        )
         text = GENERATED_COMPARISON_RE.sub("\n", text)
         related = comparison_links_for(report, comparisons)
         if related:
