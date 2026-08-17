@@ -1,0 +1,1 @@
+Figure 14: Average success rate on bimanual coordination tasks (left, 8 tasks) and pick-and-place tasks(right, 12 tasks). QWEN-ROBOTMANIP substantially outperforms all baselines in both categories.

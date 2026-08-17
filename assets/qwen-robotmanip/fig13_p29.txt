@@ -1,0 +1,1 @@
+Figure 13: Case study on pour fries into plate (ALOHA). QWEN-ROBOTMANIP (top) coordinates botharms to stabilize, open, pick up, and pour the fries box, completing the task successfully. DM0_generalist(bottom) fails at the initial stage as the right arm never reaches a graspable position.

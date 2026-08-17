@@ -1,0 +1,1 @@
+Figure 22: Instruction-following success ratesacross configurations. The chart highlights thecritical necessity of the UnifiedEEF module, show-ing severe degradation without it (35.0%) and totalfailure when combined with mixed pretraining(0.0%). The optimal configuration utilizes both thebase architecture and mixed pretraining (75.8%).

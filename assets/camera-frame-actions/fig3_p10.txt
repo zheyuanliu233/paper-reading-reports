@@ -1,0 +1,1 @@
+Figure 3 Real-World Experiments. The top charts report results from 10 in-distribution (ID) trials and 10 out-of-distribution (OOD) trials. The bottom panel illustrates the OOD test setup.

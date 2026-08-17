@@ -1,0 +1,1 @@
+Figure 16: Case study on sort electronic products (ARX5). QWEN-ROBOTMANIP (top) picks up the objectbut it falls twice; the policy autonomously retries and succeeds on the third attempt. DM0_generalist(bottom) also attempts three times but never achieves a secure grasp.

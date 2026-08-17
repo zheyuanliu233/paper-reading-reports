@@ -1,0 +1,1 @@
+Figure 4 Qualitative result of EEF recognition on Franka, xArm and UR5e. The first row shows the heatmaps obtainedfrom feature matching. The second row visualizes the selected tracking point based on the maximum similarity.

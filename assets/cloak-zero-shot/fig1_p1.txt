@@ -1,0 +1,1 @@
+Figure 1: We cloak the end-effector from its own wrist camera, letting a VLA trained on a singleparallel-jaw gripper transfer zero-shot to unseen embodiments, including a five-fingered hand.

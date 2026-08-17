@@ -1,0 +1,334 @@
+[
+  {
+    "page": 5,
+    "fig": 1,
+    "status": "ok",
+    "file": "fig1_p5.png",
+    "caption_file": "fig1_p5.txt",
+    "rect": [
+      62.9,
+      61.6,
+      530.7,
+      274.5
+    ],
+    "caption": "Figure 1: Human-to-robot data synthesis pipeline. (Top) Given egocentric video, the pipeline performsaction retargeting and smoothing, SAM3-based hand segmentation, ProPainter inpainting, base posesearch with MuJoCo IK, and depth-guided compositing. (Bottom) ∼1,933h of egocentric data from 3sources is rendered across 15 robot morphologies, yielding ∼24,808h of synthesized demonstrations."
+  },
+  {
+    "page": 6,
+    "fig": 2,
+    "status": "ok",
+    "file": "fig2_p6.png",
+    "caption_file": "fig2_p6.txt",
+    "rect": [
+      73.4,
+      68.1,
+      530.0,
+      300.9
+    ],
+    "caption": "Figure 2: Multi-stage data curation pipeline. Five-stage state-action signal filtering (sudden change,trend alignment, extreme value removal, FK consistency, and base-frame alignment) followed by threecross-modal quality checks (instruction consistency, video-state consistency, and video quality filtering)."
+  },
+  {
+    "page": 11,
+    "fig": 3,
+    "status": "ok",
+    "file": "fig3_p11.png",
+    "caption_file": "fig3_p11.txt",
+    "rect": [
+      73.8,
+      82.0,
+      524.6,
+      398.8
+    ],
+    "caption": "Figure 3: Overview of QWEN-ROBOTMANIP. The model couples a Qwen-VL backbone with a flow-matching Diffusion Transformer (DiT) action head. The backbone jointly encodes multi-view visualtokens, structured embodiment prompts, and historical context tokens, with last-layer hidden statesinjected into the DiT via alternating cross-attention. States and actions share a unified 80-dimensionalcanonical representation, with end-effector actions expressed as camera-frame delta poses to align theaction space with visual observations across embodiments, conditioned on camera and end-effector typeembeddings for embodiment-aware denoising. VLM co-training and VLA training use separate batches,where each batch contains either (Vision, QA) or (Vision, Language, Context, Action) data."
+  },
+  {
+    "page": 16,
+    "fig": 4,
+    "status": "no-gfx",
+    "caption": "Figure 4 (left) reports the results. A notable pattern is that models trained from scratch—StarVLA andOurs-scratch—attain competitive or even superior results compared to well-pretrained models such asπ0.5 and Abot-M0 on LIBERO and RoboTwin, despite lacking large-scale robotic pretraining. This is nota coincidence but a structural property of these benchmarks. Because training and evaluation data aredrawn from the same environment and task distributions, high success rates can be achieved throughin-distribution pattern matching alone. Models that lack genuine generalization can perform well simplyby memorizing recurring visual and behavioral patterns, and the benchmark cannot distinguish this fromreal capability. Prior work has further shown that fine-tuning a pretrained VLA on a benchmark’s owntraining split yields performance comparable to training from scratch (Yan et al., 2025), confirming that"
+  },
+  {
+    "page": 17,
+    "fig": 4,
+    "status": "ok",
+    "file": "fig4_p17.png",
+    "caption_file": "fig4_p17.txt",
+    "rect": [
+      65.9,
+      65.9,
+      529.4,
+      260.8
+    ],
+    "caption": "Figure 4: Standard in-distribution benchmarks cannot reveal whether a model benefits from large-scale robot data pretraining. Left: on in-distribution benchmarks (LIBERO, RoboTwin), models withoutlarge-scale robot pretraining (dashed borders) match or exceed pretrained ones. Right: on OOD bench-marks (LIBERO-Plus, RoboTwin-Clean2Rand), a clear separation emerges—pretraining provides genuinegeneralization that training-from-scratch cannot replicate."
+  },
+  {
+    "page": 17,
+    "fig": 4,
+    "status": "no-gfx",
+    "caption": "Figure 4 (right) tells a different story. On OOD benchmarks—LIBERO-Plus and RoboTwin-Clean2Rand—where evaluation conditions diverge from training, a clear separation emerges: π0.5 substantially outper-forms StarVLA and Ours-scratch, with the gap widening as perturbation severity increases. StarVLAcollapses from 85.7% (RoboTwin Easy, IID) to 10.6% (RoboTwin-Clean2Rand, OOD). This confirmsthat OOD evaluation is the correct north star for measuring foundation model quality: it reveals thetransferable structure that pretraining provides and that in-domain metrics systematically fail to capture."
+  },
+  {
+    "page": 18,
+    "fig": 5,
+    "status": "ok",
+    "file": "fig5_p18.png",
+    "caption_file": "fig5_p18.txt",
+    "rect": [
+      66.0,
+      66.8,
+      529.1,
+      322.9
+    ],
+    "caption": "Figure 5: Evaluation settings for QWEN-ROBOTMANIP, spanning 500+ simulation tasks across LIBERO,LIBERO-Plus, EBench, RoboTwin, RoboTwin-IF, RoboTwin-XE, and RoboCasa365, and 80+ real-worldtasks across 4 embodiments including UR, Franka, AgileX (ALOHA), and ARX."
+  },
+  {
+    "page": 19,
+    "fig": 6,
+    "status": "ok",
+    "file": "fig6_p19.png",
+    "caption_file": "fig6_p19.txt",
+    "rect": [
+      66.1,
+      66.3,
+      528.9,
+      314.6
+    ],
+    "caption": "Figure 6: Representative task suites from RoboTwin-IF. Operate-Tabletop (left) requires three-wayverb-and-target discrimination where a bell, stapler, and pickable objects are all present and only theinstruction-specified action is correct. Operate-Stapler (right) requires verb discrimination under sharedvisual context, where the colored pad and stapler are always present regardless of the instructed verb.Both suites are evaluated on unseen instruction templates held out from training."
+  },
+  {
+    "page": 19,
+    "fig": 7,
+    "status": "no-gfx",
+    "caption": "Figure 7 summarizes results across benchmarks evaluated under OOD settings, where QWEN-ROBOTMANIPconsistently outperforms prior state-of-the-art models by a substantial margin. QWEN-ROBOTMANIPoutperforms π0.5 on all benchmarks evaluated, with the gap widening as the evaluation becomes morechallenging."
+  },
+  {
+    "page": 20,
+    "fig": 7,
+    "status": "ok",
+    "file": "fig7_p20.png",
+    "caption_file": "fig7_p20.txt",
+    "rect": [
+      88.5,
+      215.5,
+      506.7,
+      434.5
+    ],
+    "caption": "Figure 7: OOD generalization summary. QWEN-ROBOTMANIP vs. previous state-of-the-art VLA modelacross three generalization axes. (a) Task and scene generalization under controlled perturbations.(b) Instruction following with held-out language templates. (c) Zero-shot cross-embodiment transfer. QWEN-ROBOTMANIP outperforms previous models on every OOD benchmark, with the gap wideningon harder settings."
+  },
+  {
+    "page": 22,
+    "fig": 8,
+    "status": "ok",
+    "file": "fig8_p22.png",
+    "caption_file": "fig8_p22.txt",
+    "rect": [
+      65.9,
+      339.0,
+      529.4,
+      525.8
+    ],
+    "caption": "Figure 8: EBench performance across operating mode, horizon, and precision."
+  },
+  {
+    "page": 23,
+    "fig": 9,
+    "status": "ok",
+    "file": "fig9_p23.png",
+    "caption_file": "fig9_p23.txt",
+    "rect": [
+      65.9,
+      65.9,
+      529.4,
+      224.1
+    ],
+    "caption": "Figure 9: Per-dimension generalization breakdown on EBench."
+  },
+  {
+    "page": 24,
+    "fig": 10,
+    "status": "ok",
+    "file": "fig10_p24.png",
+    "caption_file": "fig10_p24.txt",
+    "rect": [
+      111.2,
+      65.9,
+      484.0,
+      174.3
+    ],
+    "caption": "Figure 10: Zero-shot cross-embodiment evaluation on RoboTwin-XE. Left: ARX-X5. Middle: UR5-WSG.Right: Franka Panda."
+  },
+  {
+    "page": 24,
+    "fig": 11,
+    "status": "ok",
+    "file": "fig11_p24.png",
+    "caption_file": "fig11_p24.txt",
+    "rect": [
+      65.9,
+      309.1,
+      529.4,
+      573.1
+    ],
+    "caption": "Figure 11: In-domain and out-of-domain tasks of real-world CobotMagic ALOHA platform."
+  },
+  {
+    "page": 26,
+    "fig": 12,
+    "status": "ok",
+    "file": "fig12_p26.png",
+    "caption_file": "fig12_p26.txt",
+    "rect": [
+      65.9,
+      65.9,
+      529.4,
+      387.0
+    ],
+    "caption": "Figure 12: Real-world evaluation setup on the ARX ALOHA platform."
+  },
+  {
+    "page": 29,
+    "fig": 13,
+    "status": "ok",
+    "file": "fig13_p29.png",
+    "caption_file": "fig13_p29.txt",
+    "rect": [
+      67.0,
+      66.0,
+      529.2,
+      280.1
+    ],
+    "caption": "Figure 13: Case study on pour fries into plate (ALOHA). QWEN-ROBOTMANIP (top) coordinates botharms to stabilize, open, pick up, and pour the fries box, completing the task successfully. DM0_generalist(bottom) fails at the initial stage as the right arm never reaches a graspable position."
+  },
+  {
+    "page": 29,
+    "fig": 14,
+    "status": "ok",
+    "file": "fig14_p29.png",
+    "caption_file": "fig14_p29.txt",
+    "rect": [
+      65.9,
+      316.1,
+      529.4,
+      504.8
+    ],
+    "caption": "Figure 14: Average success rate on bimanual coordination tasks (left, 8 tasks) and pick-and-place tasks(right, 12 tasks). QWEN-ROBOTMANIP substantially outperforms all baselines in both categories."
+  },
+  {
+    "page": 30,
+    "fig": 15,
+    "status": "ok",
+    "file": "fig15_p30.png",
+    "caption_file": "fig15_p30.txt",
+    "rect": [
+      65.6,
+      66.3,
+      528.2,
+      283.7
+    ],
+    "caption": "Figure 15: Case study on arrange paper cups (ARX5). QWEN-ROBOTMANIP (top) sequentially picks,stacks, and collects all paper cups with precise placement. π0.5_generalist (bottom) encounters a stuckcup during stacking and fails to recover."
+  },
+  {
+    "page": 30,
+    "fig": 16,
+    "status": "ok",
+    "file": "fig16_p30.png",
+    "caption_file": "fig16_p30.txt",
+    "rect": [
+      66.4,
+      320.3,
+      529.5,
+      540.4
+    ],
+    "caption": "Figure 16: Case study on sort electronic products (ARX5). QWEN-ROBOTMANIP (top) picks up the objectbut it falls twice; the policy autonomously retries and succeeds on the third attempt. DM0_generalist(bottom) also attempts three times but never achieves a secure grasp."
+  },
+  {
+    "page": 31,
+    "fig": 17,
+    "status": "ok",
+    "file": "fig17_p31.png",
+    "caption_file": "fig17_p31.txt",
+    "rect": [
+      76.9,
+      65.7,
+      513.3,
+      334.3
+    ],
+    "caption": "Figure 17: QWEN-ROBOTMANIP on six challenging long-horizon tasks from RoboChallenge Table30-v1, spanning bimanual dexterous manipulation, sequential ingredient stacking, multi-object arrangement,and deformable object handling. Prior SOTA generalist methods achieve an average of 5% success acrossthese tasks. QWEN-ROBOTMANIP achieves 36.7%, with substantial margins on every task."
+  },
+  {
+    "page": 31,
+    "fig": 18,
+    "status": "no-gfx",
+    "caption": "Figure 18 compares the scaling behavior of three action space designs. Ours w/o UnifiedSpace concate-nates each embodiment’s raw action fields and zero-pads to 80 dimensions without any cross-embodimentstructural alignment. Ours w/o UnifiedEEF maps joints, end-effectors, grippers, and hands into seman-tically fixed positions within the 80-dimensional canonical vector (§§ 3.2), with end-effector actions"
+  },
+  {
+    "page": 32,
+    "fig": 18,
+    "status": "ok",
+    "file": "fig18_p32.png",
+    "caption_file": "fig18_p32.txt",
+    "rect": [
+      65.9,
+      65.9,
+      529.4,
+      218.5
+    ],
+    "caption": "Figure 18: Data scaling curves for models with varied state and action representations, evaluated onheld-out validation datasets. Each point reports the best validation MSE across all training checkpointsfor a given training data percentage."
+  },
+  {
+    "page": 32,
+    "fig": 19,
+    "status": "ok",
+    "file": "fig19_p32.png",
+    "caption_file": "fig19_p32.txt",
+    "rect": [
+      65.9,
+      254.9,
+      529.4,
+      378.4
+    ],
+    "caption": "Figure 19: Downstream performance on RoboTwin-C2R after fine-tuning models pre-trained withvaried data percentages and action representations. Each subplot reports success rate under a differentcontrol mode (joint or EEF) and evaluation setting (Easy or Hard)."
+  },
+  {
+    "page": 35,
+    "fig": 20,
+    "status": "ok",
+    "file": "fig20_p35.png",
+    "caption_file": "fig20_p35.txt",
+    "rect": [
+      113.6,
+      66.7,
+      484.9,
+      393.5
+    ],
+    "caption": "Figure 20: Ablation study of model architecture variants."
+  },
+  {
+    "page": 36,
+    "fig": 21,
+    "status": "ok",
+    "file": "fig21_p36.png",
+    "caption_file": "fig21_p36.txt",
+    "rect": [
+      82.2,
+      66.0,
+      277.2,
+      231.9
+    ],
+    "caption": "Figure 21: Performance comparison under differ-ent proportions of training data in RoboTwin-IF.We report the score at 10k, 30k, 50k, 70k, and 90ktraining steps. Compared with the baseline pi05,our method benefits from incorporating VLM dataand further improves when co-training with bothVLM data and VLA pretraining data."
+  },
+  {
+    "page": 36,
+    "fig": 22,
+    "status": "ok",
+    "file": "fig22_p36.png",
+    "caption_file": "fig22_p36.txt",
+    "rect": [
+      318.0,
+      65.9,
+      513.1,
+      231.9
+    ],
+    "caption": "Figure 22: Instruction-following success ratesacross configurations. The chart highlights thecritical necessity of the UnifiedEEF module, show-ing severe degradation without it (35.0%) and totalfailure when combined with mixed pretraining(0.0%). The optimal configuration utilizes both thebase architecture and mixed pretraining (75.8%)."
+  }
+]

@@ -1,0 +1,1 @@
+Figure 2: Multi-stage data curation pipeline. Five-stage state-action signal filtering (sudden change,trend alignment, extreme value removal, FK consistency, and base-frame alignment) followed by threecross-modal quality checks (instruction consistency, video-state consistency, and video quality filtering).

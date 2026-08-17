@@ -1,0 +1,1 @@
+Figure 17: QWEN-ROBOTMANIP on six challenging long-horizon tasks from RoboChallenge Table30-v1, spanning bimanual dexterous manipulation, sequential ingredient stacking, multi-object arrangement,and deformable object handling. Prior SOTA generalist methods achieve an average of 5% success acrossthese tasks. QWEN-ROBOTMANIP achieves 36.7%, with substantial margins on every task.

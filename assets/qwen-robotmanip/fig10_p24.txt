@@ -1,0 +1,1 @@
+Figure 10: Zero-shot cross-embodiment evaluation on RoboTwin-XE. Left: ARX-X5. Middle: UR5-WSG.Right: Franka Panda.
