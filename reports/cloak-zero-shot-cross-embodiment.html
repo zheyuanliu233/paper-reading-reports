@@ -15,6 +15,9 @@
 
 
 
+
+
+
 <!-- GENERATED_COMPARISON_LINKS_START -->
 <nav class="related-comparisons" aria-label="相关对比报告"><span>相关对比</span><a href="../comparisons/alignment-stack-for-cross-embodiment-manipulation.html">跨本体操作的对齐栈：CalibAll、Qwen-RobotManip 与 Cloak</a></nav>
 <!-- GENERATED_COMPARISON_LINKS_END -->
@@ -79,4 +82,16 @@ uv run python scripts/preprocess_wrist_extrinsics.py \
 <h3>训练代码发布后的实现核对清单</h3><ol><li>确认 wrist extrinsics 的方向是 camera pose relative to end-effector，并与 MuJoCo attachment site 一致。</li><li>只用 successful DROID episodes，复现 1% extrinsic outlier filtering 和 5% validation split。</li><li>离线存 source mask；在线按 Appendix B.1 执行 roll fill、1-2 capsules、1-2 disks。</li><li>将 majority-vote 256D patch mask 注入所有 ViT self-attention，并 gate 下游 cross-modal attention。</li><li>用 Mink 同时实现 src2trg/trg2src，逐 action-chunk step 求 IK；先在 source 做 round-trip FK/IK 误差测试，再接 target hardware。</li></ol><div class="callout warn"><div class="label">安全与工程坑</div><p>IK null-space jump、错误 tip frame、mask dilation 不足、camera calibration 漂移和硬件不可达都可能产生危险命令。论文实验会在有损坏风险时提前终止；实机复现应设置 workspace、velocity、collision 与 emergency-stop 限制。</p></div></section>
 
 <section id="glossary"><h2>12. 术语表</h2><dl class="glossary"><dt>Embodiment</dt><dd>机器人身体配置，包括 arm、end-effector、joint topology 与 camera mounting。</dd><dt>Visual embodiment gap</dt><dd>更换本体后，robot 自身在图像中的外观造成的 observation distribution shift。</dd><dt>Attention mask</dt><dd>在 softmax 前给特定 key 加 $-\infty$，使其不被任何 query 读取。</dd><dt>Tip-pose retargeting</dt><dd>以一组共同工作点的 6DoF pose 为桥，在 source/target joint space 间用 FK/IK 转换。</dd><dt>Silhouette Calibration</dt><dd>用伪真值 mask 与 simulation render 的 IoU 优化 wrist extrinsics。</dd><dt>Progression rate</dt><dd>完成的最高有序子阶段占总阶段比例；允许对接近成功的 rollout 给 partial credit。</dd></dl></section>
-</main></body></html>
+</main>
+<script data-report-header-offset>
+(() => {
+  const header = document.querySelector('.meta-bar');
+  if (!header || typeof ResizeObserver === 'undefined') return;
+  const update = () => {
+    document.documentElement.style.setProperty('--report-header-height', `${header.offsetHeight}px`);
+  };
+  new ResizeObserver(update).observe(header);
+  update();
+})();
+</script>
+</body></html>

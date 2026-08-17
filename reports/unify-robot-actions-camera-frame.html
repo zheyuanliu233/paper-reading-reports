@@ -15,6 +15,9 @@
 
 
 
+
+
+
 <!-- GENERATED_COMPARISON_LINKS_START -->
 <nav class="related-comparisons" aria-label="相关对比报告"><span>相关对比</span><a href="../comparisons/alignment-stack-for-cross-embodiment-manipulation.html">跨本体操作的对齐栈：CalibAll、Qwen-RobotManip 与 Cloak</a></nav>
 <!-- GENERATED_COMPARISON_LINKS_END -->
@@ -74,4 +77,16 @@ python scripts/label.py \
   --format json --max_episodes 1 --skip_mask</code></pre><div class="callout warn"><div class="label">复现检查</div><p>先核对 LeRobot <code>meta/info.json</code> 的 state keys/camera names；确认 $T^c_b$ 方向；检查 URDF mesh 和 TCP offset；先用 <code>--skip_mask</code> 验证几何，再开启完整 rasterization。完整 policy 训练按论文需 32/8 张 A100，不适合作为第一步。</p></div></section>
 
 <section id="glossary"><h2>12. 术语表</h2><dl class="glossary"><dt>Extrinsic</dt><dd>两个坐标系之间的刚体变换；这里主要是 robot base 到 camera。</dd><dt>PnP</dt><dd>Perspective-n-Point，由 3D 点及其 2D 投影估计 camera pose。</dd><dt>TCP</dt><dd>Tool Center Point，与实际抓取/接触位置一致的工具坐标原点。</dd><dt>URDF</dt><dd>描述机器人 link、joint、mesh 和 kinematics 的文件格式。</dd><dt>ADD / AUC</dt><dd>3D 点经预测/真值外参变换后的平均距离，以及阈值曲线下面积。</dd><dt>Negative transfer</dt><dd>加入额外预训练数据后反而降低下游性能，常由监督语义冲突造成。</dd></dl></section>
-</main></body></html>
+</main>
+<script data-report-header-offset>
+(() => {
+  const header = document.querySelector('.meta-bar');
+  if (!header || typeof ResizeObserver === 'undefined') return;
+  const update = () => {
+    document.documentElement.style.setProperty('--report-header-height', `${header.offsetHeight}px`);
+  };
+  new ResizeObserver(update).observe(header);
+  update();
+})();
+</script>
+</body></html>

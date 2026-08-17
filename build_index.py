@@ -17,6 +17,7 @@ GENERATED_COMPARISON_RE = re.compile(
     r"<!-- GENERATED_COMPARISON_LINKS_END -->\n?",
     re.DOTALL,
 )
+HEADER_OFFSET_SCRIPT_MARKER = "data-report-header-offset"
 
 
 class MetadataParser(HTMLParser):
@@ -204,6 +205,23 @@ def inject_comparison_links(reports: list[Report], comparisons: list[Comparison]
                 body_start = text.lower().find("<body>")
                 insert_at = body_start + len("<body>") if body_start >= 0 else 0
                 text = text[:insert_at] + block + text[insert_at:]
+        if HEADER_OFFSET_SCRIPT_MARKER not in text:
+            script = '''
+<script data-report-header-offset>
+(() => {
+  const header = document.querySelector('.meta-bar');
+  if (!header || typeof ResizeObserver === 'undefined') return;
+  const update = () => {
+    document.documentElement.style.setProperty('--report-header-height', `${header.offsetHeight}px`);
+  };
+  new ResizeObserver(update).observe(header);
+  update();
+})();
+</script>
+'''
+            body_end = text.lower().rfind("</body>")
+            insert_at = body_end if body_end >= 0 else len(text)
+            text = text[:insert_at] + script + text[insert_at:]
         report.path.write_text(text, encoding="utf-8")
 
 
