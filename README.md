@@ -2,6 +2,13 @@
 
 一个支持人工标签、关键词检索和筛选的中文论文阅读报告库。
 
+## 访问地址
+
+**[打开论文阅读报告库](https://zheyuanliu233.github.io/paper-reading-reports/)**
+
+- GitHub Pages：https://zheyuanliu233.github.io/paper-reading-reports/
+- GitHub 仓库：https://github.com/zheyuanliu233/paper-reading-reports
+
 ## 添加报告
 
 把报告 HTML 放进 `reports/`，并在 `<head>` 中填写：
